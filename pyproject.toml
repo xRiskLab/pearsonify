@@ -1,25 +1,79 @@
-[tool.poetry]
+[project]
 name = "pearsonify"
-version = "1.0.0"
+version = "1.0.1"
 description = "A lightweight package for computing confidence intervals for classification tasks using conformal prediction and Pearson residuals."
-authors = ["xRiskLab <contact@xrisklab.ai>"]
+authors = [
+    { name = "xRiskLab", email = "contact@xrisklab.ai" }
+]
 license = "MIT"
 readme = "README.md"
-
-packages = [
-    { include = "pearsonify", from = "src" }
+keywords = ["conformal prediction", "pearson residuals", "confidence intervals", "classification", "machine learning"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+requires-python = ">=3.9"
+dependencies = [
+    "numpy>=1.24.0,<2.0.0",
+    "scikit-learn>=1.2.0,<2.0.0",
+    "matplotlib>=3.7.0,<4.0.0",
 ]
 
-[tool.poetry.dependencies]
-python = "^3.9"
-numpy = "^1.24"
-scikit-learn = "^1.2"
-matplotlib = "^3.7"
+[project.urls]
+Repository = "https://github.com/xRiskLab/pearsonify"
+Homepage = "https://github.com/xRiskLab/pearsonify"
 
-[tool.poetry.dev-dependencies]
-pytest = "^7.2"
+[dependency-groups]
+dev = [
+    "pytest>=7.2.0,<9.0.0",
+    "black>=24.4.2,<25.0.0",
+    "isort>=5.13.2,<6.0.0",
+    "pylint>=3.2.6,<4.0.0",
+    "pre-commit>=4.0.1,<5.0.0",
+    "ruff>=0.11.2",
+]
 
+[tool.setuptools]
+packages = ["pearsonify"]
 
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+[tool.uv]
+default-groups = ["dev"]
+
+[tool.black]
+line-length = 88
+
+[tool.isort]
+profile = "black"
+line_length = 88
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+
+[tool.ruff]
+line-length = 88
+target-version = "py39"
+select = ["E", "F", "W", "I", "N", "B", "C4", "UP"]
+ignore = ["E203", "E501"]
+
+[tool.ruff.format]
+docstring-code-format = true
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*.py" = ["D100", "D103"]
+
+[[tool.uv.index]]
+name = "testpypi"
+url = "https://test.pypi.org/simple/"
+publish-url = "https://test.pypi.org/legacy/"
+explicit = true
