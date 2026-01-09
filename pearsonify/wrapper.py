@@ -28,8 +28,8 @@ class Pearsonify:
         # Train the model if it's not already fitted
         try:
             check_is_fitted(self.estimator)
-            if not hasattr(self.estimator, "predict_proba"):
-                raise TypeError("The estimator must have 'predict_proba' method.")
+            if not callable(getattr(self.estimator, "predict_proba", None)):
+                raise TypeError("The estimator must have a callable 'predict_proba' method.")
         except TypeError as e:
             raise TypeError(f"Estimator validation failed: {e}") from e
         except NotFittedError:
