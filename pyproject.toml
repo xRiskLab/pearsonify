@@ -60,8 +60,8 @@ pythonpath = ["."]
 [tool.ruff]
 line-length = 88
 target-version = "py39"
-select = ["E", "F", "W", "I", "N", "B", "C4", "UP"]
-ignore = ["E203", "E501"]
+lint.select = ["E", "F", "W", "I", "N", "B", "C4", "UP"]
+lint.ignore = ["E203", "E501"]
 
 [tool.ruff.format]
 docstring-code-format = true
