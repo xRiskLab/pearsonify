@@ -1,10 +1,12 @@
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 from sklearn.base import BaseEstimator
+from sklearn.utils.validation import NotFittedError, check_is_fitted
+
 from .utils import (
-    compute_pearson_residuals,
-    compute_confidence_intervals,
     calculate_coverage,
+    compute_confidence_intervals,
+    compute_pearson_residuals,
 )
 
 
@@ -24,7 +26,15 @@ class Pearsonify:
     def fit(self, X_train, y_train, X_cal, y_cal):
         """Fit the model and compute Pearson residual-based quantile from calibration data."""
         # Train the model if it's not already fitted
-        self.estimator.fit(X_train, y_train)
+        try:
+            check_is_fitted(self.estimator)
+            if not hasattr(self.estimator, "predict_proba"):
+                raise TypeError("The estimator must have 'predict_proba' method.")
+        except TypeError as e:
+            raise TypeError(f"Estimator validation failed: {e}") from e
+        except NotFittedError:
+            # Attempt to fit the estimator if not already fitted
+            self.estimator.fit(X_train, y_train)
 
         # Compute residuals on calibration set
         y_cal_pred_proba = self.estimator.predict_proba(X_cal)[:, 1]
