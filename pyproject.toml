@@ -1,6 +1,24 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.version]
+path = "pearsonify/__init__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["pearsonify"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/pearsonify",
+    "/tests",
+    "/README.md",
+    "/LICENSE.md",
+]
+
 [project]
 name = "pearsonify"
-version = "1.0.1"
+dynamic = ["version"]
 description = "A lightweight package for computing confidence intervals for classification tasks using conformal prediction and Pearson residuals."
 authors = [
     { name = "xRiskLab", email = "contact@xrisklab.ai" }
@@ -39,10 +57,9 @@ dev = [
     "pylint>=3.2.6,<4.0.0",
     "pre-commit>=4.0.1,<5.0.0",
     "ruff>=0.11.2",
+    "mypy>=1.0.0",
+    "scikit-learn-stubs",
 ]
-
-[tool.setuptools]
-packages = ["pearsonify"]
 
 [tool.uv]
 default-groups = ["dev"]
@@ -70,7 +87,8 @@ docstring-code-format = true
 convention = "google"
 
 [tool.ruff.lint.per-file-ignores]
-"tests/*.py" = ["D100", "D103"]
+"tests/*.py" = ["D100", "D103", "N806"]
+"pearsonify/*.py" = ["N803"]
 
 [[tool.uv.index]]
 name = "testpypi"

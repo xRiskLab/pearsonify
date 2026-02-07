@@ -1,0 +1,20 @@
+# See https://pre-commit.com for more information
+repos:
+  - repo: local
+    hooks:
+      - id: ruff-check
+        name: ruff check
+        entry: uv run ruff check .
+        language: system
+      - id: ruff-format
+        name: ruff format
+        entry: uv run ruff format --check .
+        language: system
+      - id: mypy
+        name: mypy
+        entry: uv run mypy pearsonify
+        language: system
+      - id: pytest
+        name: pytest
+        entry: uv run pytest tests/ -q
+        language: system

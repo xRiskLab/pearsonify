@@ -1,8 +1,10 @@
 import numpy as np
-from sklearn.svm import SVC
-from sklearn.model_selection import train_test_split
 from sklearn.datasets import make_classification
+from sklearn.model_selection import train_test_split
+from sklearn.svm import SVC
+
 from pearsonify import Pearsonify
+
 
 def test_pearsonify():
     # Generate synthetic classification data
@@ -10,8 +12,12 @@ def test_pearsonify():
     X, y = make_classification(n_samples=100, n_features=10, random_state=42)
 
     # Split into training, calibration, and test sets
-    X_train, X_temp, y_train, y_temp = train_test_split(X, y, test_size=0.4, random_state=42)
-    X_cal, X_test, y_cal, y_test = train_test_split(X_temp, y_temp, test_size=0.5, random_state=42)
+    X_train, X_temp, y_train, y_temp = train_test_split(
+        X, y, test_size=0.4, random_state=42
+    )
+    X_cal, X_test, y_cal, y_test = train_test_split(
+        X_temp, y_temp, test_size=0.5, random_state=42
+    )
 
     # Initialize Pearsonify with an SVM model
     clf = SVC(probability=True, random_state=42)

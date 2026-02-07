@@ -29,7 +29,9 @@ class Pearsonify:
         try:
             check_is_fitted(self.estimator)
             if not callable(getattr(self.estimator, "predict_proba", None)):
-                raise TypeError("The estimator must have a callable 'predict_proba' method.")
+                raise TypeError(
+                    "The estimator must have a callable 'predict_proba' method."
+                )
         except TypeError as e:
             raise TypeError(f"Estimator validation failed: {e}") from e
         except NotFittedError:
@@ -60,7 +62,9 @@ class Pearsonify:
         """Evaluate the empirical coverage."""
         return calculate_coverage(y_test, lower_bounds, upper_bounds)
 
-    def plot_intervals(self, y_test_pred_proba, lower_bounds, upper_bounds, y_test=None):
+    def plot_intervals(
+        self, y_test_pred_proba, lower_bounds, upper_bounds, y_test=None
+    ):
         """Plot the predicted probabilities with their confidence intervals."""
         if y_test is not None:
             coverage = self.evaluate_coverage(y_test, lower_bounds, upper_bounds)

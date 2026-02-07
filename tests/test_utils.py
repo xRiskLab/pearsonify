@@ -1,9 +1,11 @@
 import numpy as np
+
 from pearsonify.utils import (
-    compute_pearson_residuals,
+    calculate_coverage,
     compute_confidence_intervals,
-    calculate_coverage
+    compute_pearson_residuals,
 )
+
 
 def test_compute_pearson_residuals():
     y_true = np.array([0, 1, 1, 0])
@@ -12,12 +14,14 @@ def test_compute_pearson_residuals():
     assert residuals.shape == y_true.shape
     assert np.isfinite(residuals).all()
 
+
 def test_confidence_intervals():
     y_pred = np.array([0.2, 0.7, 0.6, 0.1])
     q_alpha = 1.96
     lb, ub = compute_confidence_intervals(y_pred, q_alpha)
     assert lb.shape == y_pred.shape and ub.shape == y_pred.shape
     assert np.all(lb >= 0) and np.all(ub <= 1)
+
 
 def test_calculate_coverage():
     y_true = np.array([0, 1, 1, 0])
