@@ -6,15 +6,19 @@ repos:
         name: ruff check
         entry: uv run ruff check .
         language: system
+        files: \.py$
       - id: ruff-format
         name: ruff format
         entry: uv run ruff format --check .
         language: system
+        files: \.py$
       - id: mypy
         name: mypy
         entry: uv run mypy pearsonify
         language: system
+        files: \.py$
       - id: pytest
         name: pytest
         entry: uv run pytest tests/ -q
         language: system
+        files: \.py$

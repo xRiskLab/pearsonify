@@ -79,6 +79,7 @@ line-length = 88
 target-version = "py39"
 lint.select = ["E", "F", "W", "I", "N", "B", "C4", "UP"]
 lint.ignore = ["E203", "E501"]
+exclude = [".github"]
 
 [tool.ruff.format]
 docstring-code-format = true
