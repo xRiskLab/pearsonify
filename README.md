@@ -19,6 +19,8 @@ It uses **Pearson residuals** and **principles of conformal prediction** to quan
 Use `pip` to install the package from GitHub:
 
 ```bash
+pip install pearsonify
+# or from GitHub:
 pip install git+https://github.com/xRiskLab/pearsonify.git
 ```
 

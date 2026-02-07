@@ -1,3 +1,5 @@
+"""Utilities for Pearsonify: Pearson residuals, confidence intervals, coverage."""
+
 import numpy as np
 
 
