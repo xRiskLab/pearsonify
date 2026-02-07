@@ -17,8 +17,10 @@ repos:
         entry: uv run mypy pearsonify
         language: system
         files: \.py$
+        pass_filenames: false
       - id: pytest
         name: pytest
         entry: uv run pytest tests/ -q
         language: system
         files: \.py$
+        pass_filenames: false
