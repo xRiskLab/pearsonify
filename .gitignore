@@ -16,3 +16,4 @@ __pycache__/
 # Hide egg-info
 *.egg-info/
 dist/
+.tmp/

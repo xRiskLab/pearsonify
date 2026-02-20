@@ -43,7 +43,10 @@ def plot_ccp_curve(
     fig, axes = plt.subplots(
         n_rows, n_cols, figsize=(min_x * n_cols, min_y * n_rows), dpi=500
     )
-    fig.suptitle(f"{model_name} - CCP Curves", fontsize=16)
+    fig.suptitle(
+        model_name,
+        y=0.95,
+    )  # size/weight from rcParams (figure.titlesize, figure.titleweight)
 
     if n_methods == 1:
         axes = [axes]
@@ -78,7 +81,7 @@ def plot_ccp_curve(
             markersize=4,
             linewidth=2,
         )
-        ax.set_title(f"{name.replace('_', ' ').title()} Model", fontsize=12)
+        ax.set_title(f"{name.replace('_', ' ')}")
         ax.set_xlabel("Predicted probability")
         ax.set_ylabel("Observed event rate")
         ax.grid(True, linestyle="dotted", linewidth=0.7, alpha=0.6)
